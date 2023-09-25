@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Your Page</title>
+  </head>
+
+  <style></style>
+  <body>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Scripts -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="widget.js" defer></script>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const element = document.getElementById("my-widget-container");
+        const widgetId = element.getAttribute("data-widget");
+        ReactDOM.render(
+          React.createElement(Embed.EmbedWidget, { widgetId: widgetId }),
+          element
+        );
+      });
+    </script>
+    <div
+      id="my-widget-container"
+      data-widget="019a2371-2871-40ec-941b-a21fec1f034e"
+      style="margin-top: 20px"
+    ></div>
+  </body>
+</html>
