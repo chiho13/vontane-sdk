@@ -1,5 +1,4 @@
 /*! For license information please see widget.js.LICENSE.txt */
-
 var Embed;
 (() => {
   var e,
