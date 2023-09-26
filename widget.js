@@ -22904,7 +22904,7 @@ var Embed;
       lm = (e, t, r = !1) =>
         e &&
         e.map((i, o) => {
-          if (yt.isText(i)) {
+          if ((console.log(i.type), yt.isText(i))) {
             let e = i,
               t =
                 "" !== e.text
@@ -22977,6 +22977,12 @@ var Embed;
                     {
                       className: `text-red  relative mb-3  ml-3 mt-4 border-l-4 border-gray-400 pl-4 text-gray-500 dark:text-gray-200\n              ${s}\n            `,
                     },
+                    t
+                  );
+                case "bulleted-list":
+                  return n().createElement(
+                    "li",
+                    { className: `mt-2 list-inside list-disc  ${s}`, key: r },
                     t
                   );
                 case "tts":
@@ -23081,15 +23087,16 @@ var Embed;
           [c, d] = (0, e.useState)("font-sans");
         return (
           (0, e.useEffect)(() => {
-            fetch(`http://localhost:3000/api/widget?id=${t}`)
+            fetch(`https://app.vontane.com/api/widget?id=${t}`)
               .then((e) => e.json())
               .then((e) => {
                 console.log(JSON.parse(e.workspace.slate_value));
                 const t = JSON.parse(e.workspace.slate_value);
-                l({
-                  brandColor: e.workspace.brand_color,
-                  accentColor: "#e9e9e9",
-                }),
+                console.log(t),
+                  l({
+                    brandColor: e.workspace.brand_color,
+                    accentColor: "#e9e9e9",
+                  }),
                   i(t),
                   a(!1),
                   d(e.workspace.font_style);
