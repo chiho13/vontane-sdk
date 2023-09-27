@@ -12,7 +12,6 @@ import styled from "styled-components";
 import { alignMap } from "../../helpers/help";
 
 import { AudioManagerContext } from "../../context/AudioContext";
-import { cn } from "../../utils/cn";
 
 const ListItemStyle = styled.div`
   position: relative;
@@ -168,12 +167,12 @@ export const ListItem = withListNumbering((props) => {
         {isOptionList && isPreview && (
           <span
             contentEditable={false}
-            className={cn(`absolute mr-3  mr-[5px] flex h-[28px] w-[28px] -translate-x-[41px] items-center justify-center rounded-md  border border-gray-400 dark:border-gray-600
+            className={`absolute mr-3  mr-[5px] flex h-[28px] w-[28px] -translate-x-[41px] items-center justify-center rounded-md  border border-gray-400 dark:border-gray-600
                 ${
                   selectedOption[groupNumber] === element.id &&
-                  "border-brand dark:border-gray-300"
+                  "border-blue-500 dark:border-gray-300"
                 }
-                `)}
+                `}
           >
             {String.fromCharCode(64 + listNumber)}
           </span>
@@ -183,14 +182,14 @@ export const ListItem = withListNumbering((props) => {
           <label
             htmlFor={element.id}
             tabIndex={-1}
-            className={cn(`absolute left-0 top-0 flex h-full w-full max-w-[400px]  cursor-pointer items-center justify-end rounded-md border   border-gray-400   hover:bg-gray-400/10 dark:border-gray-600
+            className={`absolute left-0 top-0 flex h-full w-full max-w-[400px]  cursor-pointer items-center justify-end rounded-md border   border-gray-400   hover:bg-gray-400/10 dark:border-gray-600
               
               dark:hover:bg-gray-700/20
               ${
                 selectedOption[groupNumber] === element.id
                   ? "border-brand dark:border-gray-300 "
                   : ""
-              }`)}
+              }`}
           >
             {selectedOption[groupNumber] === element.id &&
               element.correctAnswer && (
@@ -216,12 +215,10 @@ export const ListItem = withListNumbering((props) => {
               className="right-0 ml-1 mr-2 hidden h-6 w-6 "
             />
             <div
-              className={cn(
-                `absolute right-2 flex h-[24px] w-[24px] items-center justify-center rounded-full border border-gray-400  dark:border-gray-600   ${
-                  selectedOption[groupNumber] === element.id &&
-                  "border-brand dark:border-gray-300"
-                }`
-              )}
+              className={`absolute right-2 flex h-[24px] w-[24px] items-center justify-center rounded-full border border-gray-400  dark:border-gray-600   ${
+                selectedOption[groupNumber] === element.id &&
+                "border-blue-500 dark:border-gray-300"
+              }`}
             >
               {selectedOption[groupNumber] === element.id && (
                 <div className="h-[16px] w-[16px] rounded-full bg-brand dark:bg-gray-300"></div>

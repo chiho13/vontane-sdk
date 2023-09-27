@@ -3,6 +3,33 @@ import styled from "styled-components";
 
 const LoadingSpinnerSVG = styled.svg`
   z-index: 2;
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+
+  animation: rotate 2s linear infinite;
+
+  .animate-dash {
+    animation: dash 1.5s ease-in-out infinite;
+  }
 `;
 
 function LoadingSpinner({
@@ -11,12 +38,7 @@ function LoadingSpinner({
   height = 20,
 }) {
   return (
-    <LoadingSpinnerSVG
-      viewBox="0 0 50 50"
-      className="animate-rotate"
-      width={width}
-      height={height}
-    >
+    <LoadingSpinnerSVG viewBox="0 0 50 50" width={width} height={height}>
       <circle
         className={`animate-dash ${strokeColor}`}
         cx="25"

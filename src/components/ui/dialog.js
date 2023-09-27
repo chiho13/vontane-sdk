@@ -2,13 +2,12 @@ import React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { cn } from "../../utils/cn";
 
 const Dialog = DialogPrimitive.Root;
 const DialogTrigger = DialogPrimitive.Trigger;
 
 const DialogPortal = ({ className, children, ...props }) => (
-  <DialogPrimitive.Portal className={cn(className)} {...props}>
+  <DialogPrimitive.Portal {...props}>
     <div className="fixed inset-0 z-50 flex items-start items-center justify-center">
       {children}
     </div>
@@ -19,10 +18,7 @@ DialogPortal.displayName = DialogPrimitive.Portal.displayName;
 const DialogOverlay = React.forwardRef(({ className, ...props }, ref) => (
   <DialogPrimitive.Overlay
     ref={ref}
-    className={cn(
-      "data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=open]:fade-in  fixed inset-0 z-50 bg-foreground/40 transition-all duration-100 dark:bg-background/80",
-      className
-    )}
+    className="data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=open]:fade-in  fixed inset-0 z-50 bg-foreground/40 transition-all duration-100 dark:bg-background/80"
     {...props}
   />
 ));
@@ -34,10 +30,7 @@ const DialogContent = React.forwardRef(
       <DialogOverlay />
       <DialogPrimitive.Content
         ref={ref}
-        className={cn(
-          "animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0 fixed z-50 grid w-full gap-4 rounded-lg border bg-background p-6 shadow-lg dark:border-accent sm:max-w-lg ",
-          className
-        )}
+        className="animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0 fixed z-50 grid w-full gap-4 rounded-lg border bg-background p-6 shadow-lg dark:border-accent max-h-[500px]  border  border-accent bg-white px-1 text-foreground dark:bg-[#191919] sm:max-w-[670px] "
         {...props}
       >
         <AnimatePresence>
@@ -62,10 +55,7 @@ DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 const DialogHeader = ({ className, ...props }) => (
   <div
-    className={cn(
-      "flex flex-col space-y-1.5 text-center sm:text-left",
-      className
-    )}
+    className="flex flex-col space-y-1.5 text-center sm:text-left"
     {...props}
   />
 );
@@ -73,10 +63,7 @@ DialogHeader.displayName = "DialogHeader";
 
 const DialogFooter = ({ className, ...props }) => (
   <div
-    className={cn(
-      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
-      className
-    )}
+    className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2"
     {...props}
   />
 );
@@ -85,10 +72,7 @@ DialogFooter.displayName = "DialogFooter";
 const DialogTitle = React.forwardRef(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn(
-      "text-lg font-semibold leading-none tracking-tight",
-      className
-    )}
+    className=" font-semibold leading-none tracking-tight px-6 pb-6 text-3xl"
     {...props}
   />
 ));
@@ -97,7 +81,7 @@ DialogTitle.displayName = DialogPrimitive.Title.displayName;
 const DialogDescription = React.forwardRef(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
+    className="text-sm text-muted-foreground"
     {...props}
   />
 ));

@@ -48,10 +48,9 @@ export const EmbedWidget = ({ widgetId }) => {
               <div
                 className={`relative  overflow-y-auto bg-white  dark:bg-[#191919] `}
               >
-                <div className=" relative mx-auto mb-4 max-w-[580px]">
+                <div className=" relative mx-auto mb-4 max-w-[675px]">
                   {parseNodes(localValue, font)}
                 </div>
-                test
               </div>
 
               <div className="fixed right-4 top-4  z-10  hidden gap-2 xl:flex">

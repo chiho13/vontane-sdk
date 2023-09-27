@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Map, Marker, ZoomControl } from "pigeon-maps";
 import { maptiler } from "pigeon-maps/providers";
 import { MapPin, Settings, Map as MapIcon } from "lucide-react";
-import { Button } from "../ui/button";
 
 export const EmbedMapBlock = (props) => {
   const { element } = props;
@@ -56,7 +55,7 @@ export const EmbedMapBlock = (props) => {
             className="absolute bottom-0 left-0"
           >
             <img
-              src={`/images/maptiler-logo.png`}
+              src={`https://cdn.vontane.com/images/maptiler-logo.png`}
               width={100}
               height={40}
               alt="map tiler"
@@ -66,13 +65,12 @@ export const EmbedMapBlock = (props) => {
             href={`https://www.google.com/maps/?q=${element.latLng[0]},${element.latLng[1]}`}
             target="_blank"
           >
-            <Button
-              variant="outline"
+            <button
               className="z-100 absolute bottom-2 right-2 h-[32px] w-[32px] border bg-accent p-0 "
               size="xs"
             >
               <MapIcon className="w-5" />
-            </Button>
+            </button>
           </a>
         </Map>
       </div>

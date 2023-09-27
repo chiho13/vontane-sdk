@@ -1,11 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { Text } from "slate";
-// import { BlockMath, InlineMath } from "react-katex";
+import { BlockMath, InlineMath } from "react-katex";
 // import { ListItem } from "@/components/PreviewContent/PreviewElements/ListItem";
 // import { Checkbox } from "@/components/ui/checkbox";
 import { alignMap } from "./help";
+import styled from "styled-components";
 
-import { cn } from "../utils/cn";
+const Hotspot = styled.div`
+  @keyframes active {
+    0% {
+      transform: scale(0.1);
+      opacity: 1;
+    }
+    70% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .beacon:before {
+    content: "";
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    box-shadow: 0px 0px 2px 2px #ffffff;
+    animation: active 2s infinite linear;
+  }
+`;
 
 import {
   Dialog,
@@ -21,7 +47,7 @@ import { ListItem } from "../components/ListItems";
 
 const LazyLoadingWidget = ({ src }) => {
   return (
-    <div className="relative h-[410px] w-[360px] overflow-y-auto px-6 sm:w-[610px]">
+    <div className="relative h-[410px] w-[360px] overflow-y-auto px-6 sm:w-[660px]">
       <EmbedWidget widgetId={src} />
     </div>
   );
@@ -40,14 +66,12 @@ const renderElement = (
     case "paragraph":
       return (
         <p
-          className={cn(`pt-3 leading-7 text-${
-            alignMap[node.align] || node.align
-          }
+          className={`pt-3 leading-7 text-${alignMap[node.align] || node.align}
             ${fontFam}
   
             ${fontFam === "font-mono" ? "text-sm leading-6" : ""}
             dark:text-gray-200
-            `)}
+            `}
           key={key}
         >
           {children}
@@ -168,7 +192,7 @@ const renderElement = (
             node.audioPoint.map((el, i) => {
               let isLoading = true;
               return (
-                <div
+                <Hotspot
                   key={i}
                   className="absolute"
                   style={{ left: `${el.x}%`, top: `${el.y}%` }}
@@ -177,23 +201,21 @@ const renderElement = (
                     <DialogTrigger>
                       <a
                         href="#"
-                        className="beacon  flex h-[24px] w-[24px] items-center justify-center  rounded-full border-2 border-white shadow-lg ring-1 ring-gray-400"
+                        className="beacon flex h-[24px] w-[24px] items-center justify-center  rounded-full border-2 border-white shadow-lg ring-1 ring-gray-400"
                       >
                         <div className="h-[12px] w-[12px] rounded-full border border-gray-400 bg-white"></div>
                       </a>
                     </DialogTrigger>
                     {el.label && (
-                      <DialogContent className="max-h-[500px]  max-w-[380px] border  border-accent bg-white px-1 text-foreground dark:bg-[#191919] sm:max-w-[620px]">
-                        <DialogTitle className="px-6 pb-6 text-3xl">
-                          {el.label}
-                        </DialogTitle>
+                      <DialogContent>
+                        <DialogTitle>{el.label}</DialogTitle>
                         {el.link && (
                           <LazyLoadingWidget index={i} src={el.link} />
                         )}
                       </DialogContent>
                     )}
                   </Dialog>
-                </div>
+                </Hotspot>
               );
             })}
         </div>
@@ -208,6 +230,32 @@ const renderElement = (
           {children}
         </a>
       );
+
+    case "inline-equation":
+      return (
+        <span className="pointer-events-none px-1 dark:text-gray-200" key={key}>
+          <InlineMath math={node.latex} />
+        </span>
+      );
+
+    case "equation":
+      return (
+        <div
+          className="mb-4 mt-4 flex justify-center dark:text-gray-200"
+          key={key}
+        >
+          <BlockMath math={node.latex} />
+        </div>
+      );
+
+    case "column":
+      return (
+        <div className="grid w-full grid-cols-2 items-start gap-4  pb-1 pt-1">
+          {children}
+        </div>
+      );
+    case "column-cell":
+      return <div>{children}</div>;
 
     default:
       return <div></div>;
