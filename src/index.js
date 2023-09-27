@@ -36,15 +36,39 @@ const GlobalStyles = styled.div`
   }
 `;
 
-const App = () => {
-  const widgetId = document.getElementById("app").getAttribute("data-widget");
+// Initialization Function for a Single Widget
+const initializeEmbedWidget = (element) => {
+  const widgetId = element.getAttribute("data-widget");
 
-  return (
+  const App = () => (
     <GlobalStyles className="pt-6">
       <EmbedWidget key={widgetId} widgetId={widgetId} />
     </GlobalStyles>
   );
+
+  // Use createRoot for concurrent mode
+  const root = ReactDOM.createRoot(element);
+  root.render(<App />);
 };
 
-const root = ReactDOM.createRoot(document.getElementById("app"));
-root.render(<App />);
+// Initialize All Widgets on the Page
+const initializeAllWidgets = () => {
+  document
+    .querySelectorAll("div[data-widget]:not(.initialized)")
+    .forEach((element) => {
+      element.classList.add("initialized");
+      initializeEmbedWidget(element);
+    });
+};
+
+// Check if the Library Has Been Loaded Before
+if (!window.vontaneWidget) {
+  window.vontaneWidget = {
+    initializeAllWidgets: initializeAllWidgets,
+  };
+  // If not, initialize all widgets on the page
+  document.addEventListener("DOMContentLoaded", initializeAllWidgets);
+} else {
+  // If yes, only initialize widgets that haven't been initialized yet
+  initializeAllWidgets();
+}
