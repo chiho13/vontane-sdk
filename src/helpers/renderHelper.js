@@ -47,7 +47,7 @@ import { ListItem } from "../components/ListItems";
 
 const LazyLoadingWidget = ({ src }) => {
   return (
-    <div className="relative h-[410px] w-[360px] overflow-y-auto px-6 sm:w-[660px]">
+    <div className="relative h-[410px] w-[360px] overflow-y-auto px-6 sm:w-[665px]">
       <EmbedWidget widgetId={src} />
     </div>
   );

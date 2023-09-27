@@ -24,64 +24,6 @@ const GlobalStyles = styled.div`
     }
   }
 
-  .plyr--audio .plyr__controls {
-    background: none !important;
-    gap: 5px;
-  }
-
-  .plyr--audio .plyr__control:hover,
-  .plyr__control:focus-visible,
-  .plyr--audio .plyr__control[aria-expanded="true"] {
-    background: #eeeeee;
-  }
-
-  .plyr--audio .plyr__control {
-    border-radius: 8px;
-    border: none !important;
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    width: 30px !important;
-    height: 30px !important;
-  }
-
-  .plyr--audio .plyr__control[data-plyr="play"] {
-    border: 1px solid #eeeeee !important;
-  }
-
-  .plyr--full-ui input[type="range"] {
-    color: #0e78ef;
-  }
-
-  .plyr--audio .plyr__control[aria-expanded="true"] svg {
-    fill: #0e78ef !important;
-  }
-
-  .plyr__control svg {
-    fill: #0e78ef !important;
-  }
-
-  .plyr__control:hover svg {
-    fill: #f1f1f1;
-  }
-
-  .plyr--audio .plyr__control[aria-expanded="true"] svg {
-    fill: #f1f1f1;
-  }
-
-  .plyr__control:focus-visible {
-    outline: 2px dashed #0e78ef;
-    background: #eeeeee !important;
-  }
-
-  .plyr__control:focus-visible svg {
-    fill: #f1f1f1;
-  }
-
-  .plyr--full-ui input[type="range"] {
-    color: #0e78ef !important;
-  }
-
   .preview-tts p,
   .preview-tts h1,
   .preview-tts h2,
@@ -91,15 +33,6 @@ const GlobalStyles = styled.div`
 
   .preview-tts h1 {
     line-height: 1.5;
-  }
-
-  @keyframes grow {
-    0% {
-      transform: scale(0.1);
-    }
-    100% {
-      transform: scale(1);
-    }
   }
 `;
 

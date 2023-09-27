@@ -30,7 +30,7 @@ const DialogContent = React.forwardRef(
       <DialogOverlay />
       <DialogPrimitive.Content
         ref={ref}
-        className="animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0 fixed z-50 grid w-full gap-4 rounded-lg border bg-background p-6 shadow-lg dark:border-accent max-h-[500px]  border  border-accent bg-white px-1 text-foreground dark:bg-[#191919] sm:max-w-[670px] "
+        className="animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0 fixed z-50 grid w-full gap-4 rounded-lg border bg-background p-6 shadow-lg dark:border-accent max-h-[500px]  border  border-accent bg-white px-1 text-foreground dark:bg-[#191919] sm:max-w-[675px] "
         {...props}
       >
         <AnimatePresence>
