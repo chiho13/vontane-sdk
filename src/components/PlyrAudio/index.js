@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Plyr from "plyr-react";
-import "plyr-react/plyr.css";
+
 import styled, { useTheme } from "styled-components";
 
 const StyledPlyr = styled.div`
