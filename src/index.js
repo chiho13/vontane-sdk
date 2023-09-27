@@ -41,7 +41,7 @@ const initializeEmbedWidget = (element) => {
   const widgetId = element.getAttribute("data-widget");
 
   const App = () => (
-    <GlobalStyles className="pt-6">
+    <GlobalStyles>
       <EmbedWidget key={widgetId} widgetId={widgetId} />
     </GlobalStyles>
   );

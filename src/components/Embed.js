@@ -45,10 +45,8 @@ export const EmbedWidget = ({ widgetId }) => {
       {localValue ? (
         <ThemeProvider theme={currentTheme}>
           <AudioManagerProvider>
-            <div className="published">
-              <div
-                className={`relative  overflow-y-auto bg-white  dark:bg-[#191919] `}
-              >
+            <div>
+              <div className={`relative p-6  bg-white  dark:bg-[#191919] `}>
                 <div className=" relative mx-auto mb-4 max-w-[675px]">
                   {parseNodes(localValue, font)}
                 </div>
