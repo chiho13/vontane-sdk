@@ -38,7 +38,7 @@ const GlobalStyles = styled.div`
 
 // Initialization Function for a Single Widget
 const initializeEmbedWidget = (element) => {
-  const widgetId = element.getAttribute("data-widget");
+  const widgetId = element.getAttribute("data-vontane-widget");
 
   const App = () => (
     <GlobalStyles>
@@ -54,7 +54,7 @@ const initializeEmbedWidget = (element) => {
 // Initialize All Widgets on the Page
 const initializeAllWidgets = () => {
   document
-    .querySelectorAll("div[data-widget]:not(.initialized)")
+    .querySelectorAll("div[data-vontane-widget]:not(.initialized)")
     .forEach((element) => {
       element.classList.add("initialized");
       initializeEmbedWidget(element);
