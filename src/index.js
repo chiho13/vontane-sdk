@@ -35,8 +35,6 @@ const GlobalStyles = styled.div`
     line-height: 1.5;
   }
 `;
-
-// Initialization Function for a Single Widget
 const initializeEmbedWidget = (element) => {
   const widgetId = element.getAttribute("data-vontane-widget");
 
@@ -49,6 +47,7 @@ const initializeEmbedWidget = (element) => {
   // Use createRoot for concurrent mode
   const root = ReactDOM.createRoot(element);
   root.render(<App />);
+  element.classList.add("initialized"); // Mark this element as initialized
 };
 
 // Initialize All Widgets on the Page
@@ -56,19 +55,14 @@ const initializeAllWidgets = () => {
   document
     .querySelectorAll("div[data-vontane-widget]:not(.initialized)")
     .forEach((element) => {
-      element.classList.add("initialized");
       initializeEmbedWidget(element);
     });
 };
 
 // Check if the Library Has Been Loaded Before
-if (!window.vontaneWidget) {
-  window.vontaneWidget = {
-    initializeAllWidgets: initializeAllWidgets,
-  };
-  // If not, initialize all widgets on the page
+if (!window.vontaneWidgetsInitialized) {
+  window.vontaneWidgetsInitialized = true; // Mark widgets as initialized on window object
   document.addEventListener("DOMContentLoaded", initializeAllWidgets);
 } else {
-  // If yes, only initialize widgets that haven't been initialized yet
-  initializeAllWidgets();
+  console.warn("Vontane widgets have already been initialized. Skipping...");
 }

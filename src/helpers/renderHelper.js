@@ -206,14 +206,11 @@ const renderElement = (
                         <div className="h-[12px] w-[12px] rounded-full border border-gray-400 bg-white"></div>
                       </a>
                     </DialogTrigger>
-                    {el.label && (
-                      <DialogContent>
-                        <DialogTitle>{el.label}</DialogTitle>
-                        {el.link && (
-                          <LazyLoadingWidget index={i} src={el.link} />
-                        )}
-                      </DialogContent>
-                    )}
+
+                    <DialogContent>
+                      <DialogTitle>{el.label}</DialogTitle>
+                      {el.link && <LazyLoadingWidget index={i} src={el.link} />}
+                    </DialogContent>
                   </Dialog>
                 </Hotspot>
               );

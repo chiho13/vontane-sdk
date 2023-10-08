@@ -59,7 +59,7 @@ export const EmbedWidget = ({ widgetId }) => {
           </AudioManagerProvider>
         </ThemeProvider>
       ) : (
-        <div className="absolute inset-0 flex -translate-y-[30px] items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center">
           <LoadingSpinner
             width={50}
             height={50}
