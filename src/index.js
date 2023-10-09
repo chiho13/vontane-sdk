@@ -35,6 +35,8 @@ const GlobalStyles = styled.div`
     line-height: 1.5;
   }
 `;
+
+// Initialization Function for a Single Widget
 const initializeEmbedWidget = (element) => {
   const widgetId = element.getAttribute("data-vontane-widget");
 
@@ -59,10 +61,20 @@ const initializeAllWidgets = () => {
     });
 };
 
-// Check if the Library Has Been Loaded Before
-if (!window.vontaneWidgetsInitialized) {
-  window.vontaneWidgetsInitialized = true; // Mark widgets as initialized on window object
-  document.addEventListener("DOMContentLoaded", initializeAllWidgets);
-} else {
-  console.warn("Vontane widgets have already been initialized. Skipping...");
-}
+// Main Initialization Function
+const mainInitialization = () => {
+  if (!window.vontaneWidgetsInitialized) {
+    window.vontaneWidgetsInitialized = true;
+    if (document.readyState === "loading") {
+      // Loading hasn't finished yet
+      document.addEventListener("DOMContentLoaded", initializeAllWidgets);
+    } else {
+      // `DOMContentLoaded` has already fired
+      initializeAllWidgets();
+    }
+  } else {
+    console.warn("Vontane widgets have already been initialized. Skipping...");
+  }
+};
+
+mainInitialization();
