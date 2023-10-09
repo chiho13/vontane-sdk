@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return "";
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      window.addEventListener("DOMContentLoaded", (event) => {
+        const widgetId = getParameterByName("widgetId");
+        if (widgetId) {
+          const widgetDiv = document.createElement("div");
+          widgetDiv.setAttribute("data-vontane-widget", widgetId);
+          document.body.appendChild(widgetDiv);
+          const script = document.createElement("script");
+          script.src = "https://cdn.vontane.com/embed.js";
+          document.body.appendChild(script);
+        }
+      });
+    </script>
+  </head>
+  <body></body>
+</html>
